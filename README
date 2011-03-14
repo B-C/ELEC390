@@ -1,0 +1,21 @@
+Exercice 2:
+
+Question 1
+
+* On utilise sc_int pour les adresses : pour un accès au case de la ram
+	     sc_lv pour les data et la ram : on voit la ram comme un ensemble de bits ( déterminés ou non)
+
+*déjà fait dans la cours avec sc_inout_rv
+
+
+*Ne change rien (car on a déjà des vecteurs)
+
+
+Question 3
+
+*char : ou moins 8b
+*short : au moins 16b
+*int : très variable à ne pas utiliser
+*long : au moins 32b
+*long long : au moins 64b
+
