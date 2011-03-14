@@ -2,10 +2,10 @@ Exercice 2:
 
 Question 1
 
-* On utilise sc_int pour les adresses : pour un accès au case de la ram
-	     sc_lv pour les data et la ram : on voit la ram comme un ensemble de bits ( déterminés ou non)
+* On utilise sc_int pour les adresses : pour un accès aux cases de la ram
+	     sc_lv pour les data et la ram : on voit la ram comme un ensemble de bits (déterminés ou non)
 
-*déjà fait dans la cours avec sc_inout_rv
+*Déjà fait dans la cours avec sc_inout_rv
 
 
 *Ne change rien (car on a déjà des vecteurs)
