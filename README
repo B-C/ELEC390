@@ -28,3 +28,13 @@ SystemC structure :
 à la fin de f : a=2
      	      	b=2
 		c=0
+
+SystemC fonctionnel
+-------------------
+
+Il ne faut pas utiliser les méthodes bloquantes 
+(sur des fifo, mutex et sémaphore) ; 
+cela bloquerait le SC_METHOD.
+Il faut utiliser des threads séparés.
+
+
