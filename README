@@ -1,4 +1,5 @@
-Exercice 2:
+Les Types de données :
+----------------------
 
 Question 1
 
@@ -19,3 +20,11 @@ Question 3
 *long : au moins 32b
 *long long : au moins 64b
 
+SystemC structure :
+-------------------
+
+* Canaux
+
+à la fin de f : a=2
+     	      	b=2
+		c=0
