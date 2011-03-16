@@ -1,7 +1,5 @@
 #include "zoom.h"
 
-#define WAIT_AND_RESET()  wait();if(reset_n == false) goto reset
-
 void ZOOM::send_pixels()
 {
 	if(!reset_n)
@@ -27,7 +25,9 @@ void ZOOM::send_pixels()
 				else
 					pixel_out = 0;
 
-				WAIT_AND_RESET();
+				wait();
+				if(reset_n == false) 
+					goto reset;
 			}
 	}
 }
@@ -44,7 +44,11 @@ void ZOOM::get_pixels()
 	while(1)
 	{
 		while(!vref_in)
-			WAIT_AND_RESET();
+		{
+			wait();
+			if(reset_n == false) 
+				goto reset;
+		}
 		for(long i=0 ; i<(start_i+576/coeff) ; i++)
 		{
 			for(long j=0 ; j<720 ; j++)
@@ -55,10 +59,16 @@ void ZOOM::get_pixels()
 				if(i>=start_i && j>=start_i && j<(start_j+720/coeff))
 					buffer[(i-start_i)*(720/coeff)+(j-start_j)]=pixel_in;
 
-				WAIT_AND_RESET();
+				wait();
+				if(reset_n == false) 
+					goto reset;
 			}
 			while(!href_in)
-				WAIT_AND_RESET();
+			{
+				wait();
+				if(reset_n == false) 
+					goto reset;
+			}
 		}
 		sem->wait();
 	}
