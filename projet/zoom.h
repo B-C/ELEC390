@@ -27,17 +27,55 @@ SC_MODULE(ZOOM)
 //	constructor
 ////////////////////////////////////////////////////
 
-	SC_CTOR(ZOOM)
+	void init(long _coeff)
 	{
-		SC_CTHREAD(hack, clk.pos());
-		reset_signal_is(reset_n, false);
+		SC_THREAD(get_pixels);
+		sensitive << clk.pos();
+		sensitive << reset_n;
+
+		SC_THREAD(send_pixels);
+		sensitive << clk.pos();
+		sensitive << reset_n;
+
+		coeff=_coeff;
+		
+		buffer=new unsigned char[720/coeff*576/coeff];
+
+		sem=new sc_semaphore(1);
+		sem->wait();
+	}
+
+	ZOOM(sc_module_name name, long _coeff):sc_module(name)
+	{
+		init(_coeff);
+
+		start_i=(576-576/coeff)/2;
+		start_j=(720-720/coeff)/2;
+	}
+
+
+	ZOOM(sc_module_name name, long i, long j, long _coeff):sc_module(name)
+	{
+		init(_coeff);
+
+		start_i=(i<576/coeff)?i:0;
+		start_j=(j<720/coeff)?j:0;
 	}
 
 ////////////////////////////////////////////////////
 //	methods and structural parameters
 ////////////////////////////////////////////////////
+
+
+	SC_HAS_PROCESS(ZOOM);
+
 private:
-	void hack();
+	long start_i, start_j,coeff;
+	unsigned char *buffer;
+	sc_semaphore *sem;
+
+	void get_pixels();
+	void send_pixels();
 };
 
 #endif

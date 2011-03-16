@@ -60,7 +60,7 @@ int sc_main (int argc, char *argv[])
             VIDEO_IN video_in("VIDEO_IN");
 	    VIDEO_OUT video_out("VIDEO_OUT");
 //	    MOY hack("Moyenneur");
-	    ZOOM hack("Zoom");
+	    ZOOM hack("Zoom",2);
 	
 //////////////////////////////////////////////////////////
 //	Connexion des composants
