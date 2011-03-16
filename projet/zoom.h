@@ -1,10 +1,10 @@
-#ifndef MOY_H
-#define MOY_H
+#ifndef ZOOM_H
+#define ZOOMx_H
 
 #include <systemc.h>
 
 
-SC_MODULE(MOY)
+SC_MODULE(ZOOM)
 {
    
 // IO PORTS
@@ -27,7 +27,7 @@ SC_MODULE(MOY)
 //	constructor
 ////////////////////////////////////////////////////
 
-	SC_CTOR(MOY)
+	SC_CTOR(ZOOM)
 	{
 		SC_CTHREAD(hack, clk.pos());
 		reset_signal_is(reset_n, false);

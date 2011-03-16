@@ -46,16 +46,6 @@ void VIDEO_OUT::gen_images()
 	}
 }
 
-
-
-// void VIDEO_OUT::zoom_image(long i, long j)
-// {
-// 	zoom.pixel[(2*i)*image.width+(2*j)]=
-// 		zoom.pixel[(2*i+1)*image.width+(2*j)]=
-// 		zoom.pixel[(2*i)*image.width+(2*j+1)]=
-// 		zoom.pixel[(2*i+1)*image.width+(2*j+1)]=image.pixel[i*image.width+j];
-// }
-
 void VIDEO_OUT::write_images()
 {
 	char name[2048];

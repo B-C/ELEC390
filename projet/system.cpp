@@ -13,6 +13,7 @@
 #include "video_in.h"
 #include "video_out.h"
 #include "moy.h"
+#include "zoom.h"
 
 #include <stdio.h>
 #include <stdarg.h>
@@ -58,8 +59,8 @@ int sc_main (int argc, char *argv[])
 
             VIDEO_IN video_in("VIDEO_IN");
 	    VIDEO_OUT video_out("VIDEO_OUT");
-	    MOY hack("Moyenneur");
-//	    ZOOM hack("Zoom");
+//	    MOY hack("Moyenneur");
+	    ZOOM hack("Zoom");
 	
 //////////////////////////////////////////////////////////
 //	Connexion des composants
