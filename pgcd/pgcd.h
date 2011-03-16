@@ -3,6 +3,9 @@
 
 #include "systemc.h"
 
+typedef enum{WAITING, COMPUTING, FINISHED} States;
+
+
 unsigned char euclide(unsigned char a, unsigned char b);
 
 SC_MODULE(Pgcd_hl)
@@ -34,11 +37,17 @@ SC_MODULE(Pgcd)
 
 	SC_CTOR(Pgcd): x("x"),y("y"),pgcd("pgcd"),start("start"),done("done")
 	{
-		SC_THREAD(compute);
+		SC_METHOD(compute);
 		sensitive << clk.pos();
+
+		a=b=r=1;
+		state =WAITING;
 	}
+
+	unsigned char a,b,r;
+	States state;
+
+
 };
-
-
 
 #endif

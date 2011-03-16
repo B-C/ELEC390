@@ -33,53 +33,40 @@ void Pgcd_hl::compute()
 	}
 }
 
-typedef enum{WAITING, COMPUTING, FINISHED} States;
 
 void Pgcd::compute()
 {
-	unsigned char a,b,r;
-	States state =WAITING;
-
-	a=b=r=1;
-
-	while(true)
+	switch(state)
 	{
-		switch(state)
+	case WAITING:
+		done = 0;
+		if(start)
 		{
-		case WAITING:
-			done = 0;
-			if(start)
+			b=y;
+			r=x;
+
+			if(r!=0 && b!=0)
+				state=COMPUTING;
+			else
 			{
-				b=y;
-				r=x;
-
-				if(r!=0 && b!=0)
-					state=COMPUTING;
-				else
-				{
-					b+=r;
-					state=FINISHED;
-				}
-			}
-			wait();
-			break;
-
-		case COMPUTING:
-			a=((b<r)? r: b);
-			b=((b<r)? b: r);
-			r=a-b;	
-			if(r==0) 
+				b+=r;
 				state=FINISHED;
-
-			wait();
-			break;
-			
-		case FINISHED:
-			pgcd=b;
-			done=1;
-			state=WAITING;
-			wait();
-			break;
+			}
 		}
+		break;
+
+	case COMPUTING:
+		a=((b<r)? r: b);
+		b=((b<r)? b: r);
+		r=a-b;	
+		if(r==0) 
+			state=FINISHED;
+		break;
+			
+	case FINISHED:
+		pgcd=b;
+		done=1;
+		state=WAITING;
+		break;
 	}
 }
