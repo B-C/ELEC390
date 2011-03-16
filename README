@@ -26,7 +26,7 @@ SystemC structure :
 * Canaux
 
 à la fin de f : a=2
-     	      	b=2
+     	      	b=0
 		c=0
 
 SystemC fonctionnel
