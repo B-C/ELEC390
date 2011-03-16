@@ -38,3 +38,14 @@ cela bloquerait le SC_METHOD.
 Il faut utiliser des threads séparés.
 
 
+Généricité
+----------
+
+Deux moyens :
+
+Les templates : 
+	avantage : peut être statique
+	inconvénient : déterminé à la compilation
+Arguments pour les constructeurs des modules :
+	avantage :  déterminé à l'execution
+	inconvénient : besoin d'allocation dynamiqe
