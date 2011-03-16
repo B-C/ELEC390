@@ -38,8 +38,10 @@ SC_MODULE(ZOOM)
 		sensitive << reset_n;
 
 		coeff=_coeff;
+
+		size=720/coeff*576/coeff  /2  +720/coeff;
 		
-		buffer=new unsigned char[720/coeff*576/coeff];
+		buffer=new unsigned char[size];
 
 		sem=new sc_semaphore(1);
 		sem->wait();
@@ -71,6 +73,7 @@ SC_MODULE(ZOOM)
 
 private:
 	long start_i, start_j,coeff;
+	long size;
 	unsigned char *buffer;
 	sc_semaphore *sem;
 

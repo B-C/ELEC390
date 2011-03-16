@@ -14,18 +14,17 @@ void ZOOM::send_pixels()
 		sem->post();
 
 		for(long i=0 ; i<625 ; i++)
-			for(long j=0 ; j<874 ; j++)
+			for(long j=0 ; j<874 ; j+=coeff)
 			{
 				href_out = (i<576) && (j<720);
 				vref_out = (i<3);
-
 				
 				if((i<576) && (j<720))
-					pixel_out = buffer[i/coeff*(720/coeff)+j/coeff];
+					pixel_out = buffer[(i/coeff*(720/coeff)+j/coeff)%size];
 				else
 					pixel_out = 0;
 
-				wait();
+				wait(coeff);// Send coeff X  
 				if(reset_n == false) 
 					goto reset;
 			}
@@ -57,7 +56,7 @@ void ZOOM::get_pixels()
 					sem->post();
 
 				if(i>=start_i && j>=start_i && j<(start_j+720/coeff))
-					buffer[(i-start_i)*(720/coeff)+(j-start_j)]=pixel_in;
+					buffer[((i-start_i)*(720/coeff)+(j-start_j))%size]=pixel_in;
 
 				wait();
 				if(reset_n == false) 
