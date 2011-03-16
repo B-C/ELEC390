@@ -50,9 +50,8 @@ void Pgcd::compute()
 			done = 0;
 			if(start)
 			{
-				b=((x<y)? y.read() : x.read());
-				r=((x<y)? x.read() : y.read());
-
+				b=y;
+				r=x;
 
 				if(r!=0 && b!=0)
 					state=COMPUTING;
@@ -66,10 +65,10 @@ void Pgcd::compute()
 			break;
 
 		case COMPUTING:
-			a=b;
-			b=r;
-			r=a%b;	
-			if(!r)
+			a=((b<r)? r: b);
+			b=((b<r)? b: r);
+			r=a-b;	
+			if(r==0) 
 				state=FINISHED;
 
 			wait();
