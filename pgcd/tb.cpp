@@ -36,7 +36,7 @@ int sc_main(int argc, char *argv[])
 	calc.start(start);
 	calc.done(done);
 	
-	/*****Test du PGCD*****/
+	/*****Test du PGCD (exhaustif) *****/
 
 	long good=0,bad=0;
 	
