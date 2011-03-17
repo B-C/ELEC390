@@ -39,7 +39,8 @@ SC_MODULE(ZOOM)
 
 		coeff=_coeff;
 
-		size=720/coeff*576/coeff  /2  +720/coeff;
+		size=720/coeff*576/coeff;
+		// smaller size => issue for important zoom in the bottom right corner
 		
 		buffer=new unsigned char[size];
 
@@ -51,6 +52,7 @@ SC_MODULE(ZOOM)
 	{
 		init(_coeff);
 
+		/** Zoom in the middle **/
 		start_i=(576-576/coeff)/2;
 		start_j=(720-720/coeff)/2;
 	}
@@ -60,8 +62,8 @@ SC_MODULE(ZOOM)
 	{
 		init(_coeff);
 
-		start_i=(i<576/coeff)?i:0;
-		start_j=(j<720/coeff)?j:0;
+		start_i=(i<(576-576/coeff))?i:0;
+		start_j=(j<(720-720/coeff))?j:0;
 	}
 
 ////////////////////////////////////////////////////

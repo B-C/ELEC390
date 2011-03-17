@@ -19,6 +19,10 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
+#include <iostream>
+
+using namespace std;
+
 
 ////////////////////////////////////////////////////
 //	MAIN
@@ -57,10 +61,27 @@ int sc_main (int argc, char *argv[])
 //	Instanciation des composants
 /////////////////////////////////////////////////////////
 
-            VIDEO_IN video_in("VIDEO_IN");
-	    VIDEO_OUT video_out("VIDEO_OUT");
-//	    MOY hack("Moyenneur");
-	    ZOOM hack("Zoom",2);
+	long x, y, coeff; 
+	
+	cout<<"**ZOOM**"<<endl<<endl
+	    <<"Coefficient ?"<<endl
+	    <<">";	
+	cin>>coeff;
+
+	cout<<endl
+	    <<"X ?"<<endl
+	    <<">";	
+	cin>>x;
+
+	cout<<endl
+	    <<"Y ?"<<endl
+	    <<">";	
+	cin>>y;
+
+	VIDEO_IN video_in("VIDEO_IN");
+	VIDEO_OUT video_out("VIDEO_OUT");
+//	MOY hack("Moyenneur");
+	ZOOM hack("Zoom",y,x,coeff);
 	
 //////////////////////////////////////////////////////////
 //	Connexion des composants
