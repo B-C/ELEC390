@@ -1,15 +1,22 @@
+Intriduction :
+--------------
+
+Les cannaux sont les tuyaux.
+Les interfaces sont les joints.
+
 Les Types de données :
 ----------------------
 
 Question 1
 
-* On utilise sc_int pour les adresses : pour un accès aux cases de la ram
+* On utilise sc_int pour les adresses : pour un accès aux cases de la ram (ou des char pour accélérer la simulation)
 	     sc_lv pour les data et la ram : on voit la ram comme un ensemble de bits (déterminés ou non)
+	     ou des short pour accélérer la simulation.
 
-*Déjà fait dans la cours avec sc_inout_rv
+* Pour un bus bidirectionnel : déjà fait dans le cours avec sc_inout_rv.
 
-
-*Ne change rien (car on a déjà des vecteurs)
+* Si le bus de données augmente, on utilise des vecteurs de tailles idoines.
+  On peut les remplacer par un short (16 bit), un long (32 bit), un long long (64 bit), un sc_int<23> (23 bit)
 
 
 Question 3
@@ -23,20 +30,15 @@ Question 3
 SystemC structure :
 -------------------
 
-* Canaux
-
-à la fin de f : a=2
+À la fin de f : a=2
      	      	b=0
 		c=0
 
 SystemC fonctionnel
 -------------------
 
-Il ne faut pas utiliser les méthodes bloquantes 
-(sur des fifo, mutex et sémaphore) ; 
-cela bloquerait le SC_METHOD.
-Il faut utiliser des threads séparés.
-
+Il ne faut pas utiliser les méthodes bloquantes (sur des fifo, mutex et sémaphore)
+dans une SC_METHOD. Cela la bloquerait. Il faut utiliser des threads séparés.
 
 Généricité
 ----------
@@ -48,4 +50,4 @@ Les templates :
 	inconvénient : déterminé à la compilation
 Arguments pour les constructeurs des modules :
 	avantage :  déterminé à l'execution
-	inconvénient : besoin d'allocation dynamiqe
+	inconvénient : besoin d'allocation dynamique
